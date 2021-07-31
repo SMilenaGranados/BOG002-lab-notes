@@ -1,25 +1,21 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { auth } from "../configuration/Firebase";
 import logoAllNotes from "../assets/LogoAllNotes.png";
 import { useForm } from "../hooks/useForm";
 
+
 const Register = () => {
   const [formValues, handleInputChange ] = useForm({
-    name: "",
+    //name: "",
     email: "",
     password: "",
   });
 
-  const { name, email, password } = formValues;
+  const { email, password } = formValues;
 
-  useEffect( () => {
-      console.log("email cambio")
-  }, [ password ]);
-
-  const handleSubmit = (e) => {
-      e.preventDefault();
-
-      console.log( formValues );
-
+  const registerUser = (e) => {
+      e.preventDefault()
+      auth.createUserWithEmailAndPassword(email, password)
   }
 
   return (
@@ -28,8 +24,8 @@ const Register = () => {
         <img src={logoAllNotes} alt="logo" />
       </div>
 
-      <form onSubmit={ handleSubmit }>
-        <div className="form-group">
+      <form onSubmit={ registerUser }>
+        {/* <div className="form-group">
           <input
             type="text"
             name="name"
@@ -38,7 +34,7 @@ const Register = () => {
             onChange={handleInputChange}
             required
           ></input>
-        </div>
+        </div> */}
 
         <div className="form-group">
           <input
@@ -73,6 +69,3 @@ const Register = () => {
 
 export default Register;
 
-// firebase.auth().onAuthStateChanged(user => {
-//     console.log(user);
-//   })
