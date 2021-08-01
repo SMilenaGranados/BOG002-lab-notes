@@ -1,0 +1,99 @@
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#textCopy {
+  font-family: "Atma", cursive;
+  font-weight: 500;
+  margin-top: 5px;
+  font-size: 22px;
+  line-height: 28px;
+}
+
+#logoAllNotes {
+  width: 378px;
+  margin-top: 50px;
+}
+
+#containerForm {
+  background-color: #afa488;
+  width: 458px;
+  height: 285px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#containerButtonRegister {
+  background-color: #afa488;
+  border-radius: 15px;
+  width: 458px;
+  height: 79px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+    width: 351px;
+    height: 35px;
+    margin-top: 22px;
+    border-radius: 8px;
+    font-family: "Atma", cursive;
+    font-size: 18px;
+    border: 1px solid white;
+    padding-left: 15px;
+}
+
+#buttonLogIn {
+    background-color: #201A0E;
+    color: #FCD374;
+    font-family: "Atma", cursive;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 8px;
+    margin-top: 22px;
+    width: 100px;
+    height: 35px;
+    border:none;
+    cursor: pointer;
+}
+
+#buttonForRegister {
+    background-color: #F4C356;
+    color: #201A0E;
+    font-family: "Atma", cursive;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 8px;
+    width: 100px;
+    height: 35px;
+    border:none;
+    cursor: pointer;
+}
+
+#buttonGoogle {
+    background-color: #F4C356;
+    color: #201A0E;
+    font-family: "Atma", cursive;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 8px;
+    margin-top: 22px;
+    width: 210px;
+    height: 37px;
+    border:none;
+    cursor: pointer;
+}
+
+#logoGoogle {
+    margin: 2px 12px 0px 0px;
+} 

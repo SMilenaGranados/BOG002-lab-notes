@@ -1,0 +1,44 @@
+#btnCloseRegister {
+    background-color: #201A0E;
+    color: #FCD374;
+    font-size: 18px;
+    font-family: "Atma", cursive;
+    font-weight: bold;
+    text-align: center;
+    padding: 0px 8px 0px 8px;
+    margin: 200px 0px 5px 438px;
+    border-radius: 20px;
+    border:none;
+    cursor: pointer;
+}  
+
+#logoAllNotesReg {
+    width: 168px;
+    margin-left: 290px;
+    margin-bottom: 25px;
+}
+
+#containerRegister {
+    background-color: #afa488;
+    width: 458px;
+    height: 285px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#buttonRegister {
+    background-color: #201A0E;
+    color: #FCD374;
+    font-family: "Atma", cursive;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 8px;
+    margin-top: 22px;
+    width: 100px;
+    height: 35px;
+    border:none;
+    cursor: pointer;
+}

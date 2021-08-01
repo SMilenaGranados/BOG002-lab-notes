@@ -1,9 +1,11 @@
 import React from "react";
 import firebase from "firebase/app";
+import "../styles/login.css";
 import { auth } from "../configuration/Firebase";
 import { useForm } from "../hooks/useForm";
 import logoAllNotes from "../assets/LogoAllNotes.png";
 import logoGoogle from "../assets/LogoGoogle.png";
+import { Link } from "react-router-dom";
 
 
 const Login = () => {
@@ -14,7 +16,7 @@ const Login = () => {
   });
 
   const { email, password } = formValues;
-
+    
   const loginUser = (e) => {
     e.preventDefault();
     auth
@@ -23,23 +25,26 @@ const Login = () => {
       .catch((err) => alert("Debe registrarse para iniciar sesion"));
   };
 
-  const loginGoogle = (e) => {
+    const loginGoogle = (e) => {
     e.preventDefault();
     const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider)
+    auth.signInWithPopup(provider);
   };
 
   return (
     <section>
       <div>
-        <img src={logoAllNotes} alt="logo" />
-        <p>
+        <img id="logoAllNotes" src={logoAllNotes} alt="logo" />
+        <p id="textCopy">
           ¡Don't let anything slip through!<br></br>
-          All Notes lets you yake note of everything
+          <strong>All Notes</strong> lets you yake note of everything
         </p>
       </div>
-      <form onSubmit={loginUser}>
-        {/* <div className="form-group">
+
+      <div id="containerForm">
+        
+        <form onSubmit={loginUser}>
+          {/* <div className="form-group">
           <input
             type="text"
             name="name"
@@ -50,39 +55,48 @@ const Login = () => {
           ></input>
         </div> */}
 
-        <div className="form-group">
-          <input
-            type="email"
-            name="email"
-            placeholder="email"
-            value={email}
-            onChange={handleInputChange}
-            required
-          ></input>
-        </div>
-        <p>Mensaje de error</p>
+          <div className="form-group">
+            <input
+              type="email"
+              name="email"
+              placeholder="email"
+              value={email}
+              onChange={handleInputChange}
+              required
+            ></input>
+          </div>
+          {/* <p>Mensaje de error</p> */}
 
-        <div className="form-group">
-          <input
-            type="password"
-            name="password"
-            placeholder="password"
-            value={password}
-            onChange={handleInputChange}
-            required
-          ></input>
-        </div>
-        <p>Mensaje de error</p>
-        <button type="submit" class="button">
-          Log In
-        </button>
-      </form>
-      <div>
-        <button type="button" onClick={loginGoogle}>
-          <img src={logoGoogle} alt="logoGoogle" />
-          Log in with Google
-        </button>
-        <button class="button">Registration</button>
+          <div className="form-group">
+            <input
+              type="password"
+              name="password"
+              placeholder="password"
+              value={password}
+              onChange={handleInputChange}
+              required
+            ></input>
+          </div>
+          {/* <p>Mensaje de error</p> */}
+          
+          <button id="buttonLogIn" type="submit" class="button">
+            Log In
+          </button>
+         
+          <br></br>
+          <button id="buttonGoogle" type="button" onClick={loginGoogle}>
+            <img id="logoGoogle" src={logoGoogle} alt="logoGoogle" />
+            Log in with Google
+          </button>
+        </form>
+      </div>
+
+      <div id="containerButtonRegister">
+        <Link to="/Register">
+          <button id="buttonForRegister" class="button">
+            Register
+          </button>
+        </Link>
       </div>
     </section>
   );

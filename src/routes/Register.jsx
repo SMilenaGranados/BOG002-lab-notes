@@ -1,11 +1,12 @@
 import React from "react";
+import "../styles/register.css";
 import { auth } from "../configuration/Firebase";
 import logoAllNotes from "../assets/LogoAllNotes.png";
 import { useForm } from "../hooks/useForm";
-
+import { Link } from "react-router-dom";
 
 const Register = () => {
-  const [formValues, handleInputChange ] = useForm({
+  const [formValues, handleInputChange] = useForm({
     //name: "",
     email: "",
     password: "",
@@ -14,18 +15,22 @@ const Register = () => {
   const { email, password } = formValues;
 
   const registerUser = (e) => {
-      e.preventDefault()
-      auth.createUserWithEmailAndPassword(email, password)
-  }
+    e.preventDefault();
+    auth.createUserWithEmailAndPassword(email, password);
+  };
 
   return (
     <section>
+      <Link to="/">
+        <button id="btnCloseRegister">X</button>
+      </Link>
       <div>
-        <img src={logoAllNotes} alt="logo" />
+        <img id="logoAllNotesReg" src={logoAllNotes} alt="logo" />
       </div>
 
-      <form onSubmit={ registerUser }>
-        {/* <div className="form-group">
+      <div id="containerRegister">
+        <form onSubmit={registerUser}>
+          {/* <div className="form-group">
           <input
             type="text"
             name="name"
@@ -36,36 +41,37 @@ const Register = () => {
           ></input>
         </div> */}
 
-        <div className="form-group">
-          <input
-            type="email"
-            name="email"
-            placeholder="email"
-            value={email}
-            onChange={handleInputChange}
-            required
-          ></input>
-        </div>
-        <p>Mensaje de error</p>
+          <div className="form-group">
+            <input
+              type="email"
+              name="email"
+              placeholder="email"
+              value={email}
+              onChange={handleInputChange}
+              required
+            ></input>
+          </div>
+          {/* <p>Mensaje de error</p> */}
 
-        <div className="form-group">
-          <input
-            type="password"
-            name="password"
-            placeholder="password"
-            value={password}
-            onChange={handleInputChange}
-            required
-          ></input>
-        </div>
-        <p>Mensaje de error</p>
-        <button type="submit" class="button">
-          Register
-        </button>
-      </form>
+          <div className="form-group">
+            <input
+              type="password"
+              name="password"
+              placeholder="password"
+              value={password}
+              onChange={handleInputChange}
+              required
+            ></input>
+          </div>
+          {/* <p>Mensaje de error</p> */}
+
+          <button id="buttonRegister" type="submit" class="button">
+            Register
+          </button>
+        </form>
+      </div>
     </section>
   );
 };
 
 export default Register;
-
