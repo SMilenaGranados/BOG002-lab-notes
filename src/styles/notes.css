@@ -1,0 +1,70 @@
+#sectionNotes {
+  background-color: #afa488;
+  height: 100vw;
+  width: 100vw;
+  margin-left: -8px;
+}
+
+#headerNotes {
+  background-color: white;
+  width: 100vw;
+  top: 0;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#logoAllNotesNot {
+  width: 188px;
+  margin: 12px 0px 12px 24px;
+}
+
+#line {
+  position: fixed;
+  top: 180px;
+  left: 0px;
+  width: 100%;
+}
+
+#HiUser {
+  font-family: "Atma", cursive;
+  font-weight: 600;
+  font-size: 36px;
+}
+
+#buttonAddNote {
+  background-color: #f4c356;
+  color: #201a0e;
+  font-family: "Atma", cursive;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 8px;
+  margin-top: 22px;
+  width: 210px;
+  height: 37px;
+  border-color: #201a0e;
+  cursor: pointer;
+}
+
+#logoPencil {
+  margin-left: 15px;
+  width: 26px;
+}
+
+#buttonLogOut {
+  background-color: #201a0e;
+  color: #fcd374;
+  font-family: "Atma", cursive;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 8px;
+  margin-top: 22px;
+  margin-right: 50px;
+  width: 100px;
+  height: 35px;
+  border: none;
+  cursor: pointer;
+}
