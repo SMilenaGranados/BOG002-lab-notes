@@ -4,6 +4,8 @@ import logoAllNotes from "../assets/LogoAllNotes.png";
 import pencil from "../assets/Pencil.png";
 import line from "../assets/Line.png";
 
+
+
 const Notes = () => {
   return (
     <section id="sectionNotes">
@@ -11,7 +13,7 @@ const Notes = () => {
         <div>
           <img id="logoAllNotesNot" src={logoAllNotes} alt="logo" />
         </div>
-        <p id="HiUser">Hi! milena granados</p>
+        <p id="HiUser">Hi! ... </p>
 
         <button id="buttonAddNote" type="button">
           Add your new note

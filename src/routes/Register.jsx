@@ -7,16 +7,17 @@ import { Link } from "react-router-dom";
 
 const Register = () => {
   const [formValues, handleInputChange] = useForm({
-    //name: "",
+    name: "",
     email: "",
     password: "",
   });
 
-  const { email, password } = formValues;
+  const { email, password, name } = formValues;
 
   const registerUser = (e) => {
     e.preventDefault();
-    auth.createUserWithEmailAndPassword(email, password);
+    auth.createUserWithEmailAndPassword(email, password)
+    .then((res) => console.log(email, password, name))
   };
 
   return (
@@ -30,7 +31,7 @@ const Register = () => {
 
       <div id="containerRegister">
         <form onSubmit={registerUser}>
-          {/* <div className="form-group">
+          <div className="form-group">
           <input
             type="text"
             name="name"
@@ -39,7 +40,7 @@ const Register = () => {
             onChange={handleInputChange}
             required
           ></input>
-        </div> */}
+        </div>
 
           <div className="form-group">
             <input
