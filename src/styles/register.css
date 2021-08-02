@@ -21,13 +21,17 @@
 #containerRegister {
     background-color: #afa488;
     width: 458px;
-    height: 285px;
+    height: 320px;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.6);
 }
+ #inputName {
+    margin-top: 5px;
+ }
 
 #buttonRegister {
     background-color: #201A0E;
@@ -36,7 +40,7 @@
     font-size: 18px;
     font-weight: 500;
     border-radius: 8px;
-    margin-top: 22px;
+    margin-top: 42px;
     width: 100px;
     height: 35px;
     border:none;

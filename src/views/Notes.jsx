@@ -20,7 +20,7 @@ const Notes = () => {
           <img id="logoPencil" src={pencil} alt="logoPencil" />
         </button>
 
-        <button id="buttonLogOut" type="button" class="button">
+        <button id="buttonLogOut" type="button" className="button">
           Log Out
         </button>
       </header>

@@ -1,34 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import firebase from "firebase/app";
 import "../styles/login.css";
 import { auth } from "../configuration/Firebase";
 import { useForm } from "../hooks/useForm";
 import logoAllNotes from "../assets/LogoAllNotes.png";
 import logoGoogle from "../assets/LogoGoogle.png";
-import { Link } from "react-router-dom";
-
+import { Link, useHistory } from "react-router-dom";
 
 const Login = () => {
   const [formValues, handleInputChange] = useForm({
-    //name: "",
     email: "",
     password: "",
   });
-
+  const [errorEmail, setErrorEmail] = useState("");
+  const [errorPassword, setErrorPassword] = useState("");
+  const [error, setError] = useState("");
   const { email, password } = formValues;
-    
+  const history = useHistory();
+
   const loginUser = (e) => {
     e.preventDefault();
     auth
       .signInWithEmailAndPassword(email, password)
-      .then((res) => alert("inicio sesion"))
-      .catch((err) => alert("Debe registrarse para iniciar sesion"));
+      .then(() => history.push("/Notes"))
+      .catch((err) => {
+        console.log(err);
+        if (err.code === "auth/user-not-found") {
+          setErrorEmail("Please register or enter a valid email address");
+          setTimeout(() => {
+            setErrorEmail("");
+          }, 3000);
+        }
+        if (err.code === "auth/wrong-password") {
+          setErrorPassword("Password invalid");
+          setTimeout(() => {
+            setErrorPassword("");
+          }, 3000);
+        }
+        if (err.code === "auth/too-many-requests") {
+          setError("Access to this account has been temporarily disabled");
+          setTimeout(() => {
+            setError("");
+          }, 3000);
+        }
+      });
   };
-
-    const loginGoogle = (e) => {
+  const loginGoogle = (e) => {
     e.preventDefault();
     const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider);
+    auth.signInWithPopup(provider).then(() => history.push("/Notes"));
   };
 
   return (
@@ -42,21 +62,10 @@ const Login = () => {
       </div>
 
       <div id="containerForm">
-        
         <form onSubmit={loginUser}>
-          {/* <div className="form-group">
-          <input
-            type="text"
-            name="name"
-            placeholder="user name"
-            value={name}
-            onChange={handleInputChange}
-            required
-          ></input>
-        </div> */}
-
           <div className="form-group">
             <input
+              id="inputEmail"
               type="email"
               name="email"
               placeholder="email"
@@ -65,8 +74,7 @@ const Login = () => {
               required
             ></input>
           </div>
-          {/* <p>Mensaje de error</p> */}
-
+          <p className="error">{errorEmail}</p>
           <div className="form-group">
             <input
               type="password"
@@ -77,13 +85,16 @@ const Login = () => {
               required
             ></input>
           </div>
-          {/* <p>Mensaje de error</p> */}
-          
-          <button id="buttonLogIn" type="submit" class="button">
-            Log In
-          </button>
-         
-          <br></br>
+
+          <p className="error">{errorPassword}</p>
+          <p className="error">{error}</p>
+
+          <div>
+            <button id="buttonLogIn" type="submit" className="button">
+              Log In
+            </button>
+          </div>
+
           <button id="buttonGoogle" type="button" onClick={loginGoogle}>
             <img id="logoGoogle" src={logoGoogle} alt="logoGoogle" />
             Log in with Google
@@ -93,13 +104,12 @@ const Login = () => {
 
       <div id="containerButtonRegister">
         <Link to="/Register">
-          <button id="buttonForRegister" class="button">
+          <button id="buttonForRegister" className="button">
             Register
           </button>
         </Link>
       </div>
     </section>
-    
   );
 };
 

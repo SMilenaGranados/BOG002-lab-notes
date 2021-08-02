@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/register.css";
 import { auth } from "../configuration/Firebase";
 import logoAllNotes from "../assets/LogoAllNotes.png";
 import { useForm } from "../hooks/useForm";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+
 
 const Register = () => {
   const [formValues, handleInputChange] = useForm({
@@ -12,13 +13,39 @@ const Register = () => {
     password: "",
   });
 
+  const [errorInvalidEmail, setErrorInvalidEmail] = useState("");
+  const [errorInUseEmail, setErrorInUseEmail] = useState("");
+  const [errorTypePassword, setErrorTypePassword] = useState("");
   const { email, password, name } = formValues;
+  const history = useHistory();
 
   const registerUser = (e) => {
     e.preventDefault();
     auth.createUserWithEmailAndPassword(email, password)
-    .then((res) => console.log(email, password, name))
-  };
+    .then(() => history.push('/'))
+    .catch((err) => {
+      console.log(err);
+      if (err.code === "auth/invalid-email") {
+        setErrorInvalidEmail("Please enter email with format user@abc.com");
+        setTimeout(() => {
+          setErrorInvalidEmail("");
+        }, 3000);
+      }
+      if (err.code === "auth/email-already-in-use") {
+        setErrorInUseEmail("email entered is registered");
+        setTimeout(() => {
+          setErrorInUseEmail("");
+        }, 3000);
+      }
+      if (password.length < 6)   {
+        setErrorTypePassword("Please enter minimum 6 characters");
+        setTimeout(() => {
+          setErrorTypePassword("");
+        }, 3000);
+      }
+    });
+};
+
 
   return (
     <section>
@@ -32,7 +59,7 @@ const Register = () => {
       <div id="containerRegister">
         <form onSubmit={registerUser}>
           <div className="form-group">
-          <input
+          <input id="inputName"
             type="text"
             name="name"
             placeholder="user name"
@@ -52,7 +79,8 @@ const Register = () => {
               required
             ></input>
           </div>
-          {/* <p>Mensaje de error</p> */}
+          <p className="error">{errorInvalidEmail}</p>
+          <p className="error">{errorInUseEmail}</p>
 
           <div className="form-group">
             <input
@@ -64,9 +92,9 @@ const Register = () => {
               required
             ></input>
           </div>
-          {/* <p>Mensaje de error</p> */}
+          <p className="error">{errorTypePassword}</p>
 
-          <button id="buttonRegister" type="submit" class="button">
+          <button id="buttonRegister" type="submit" className="button">
             Register
           </button>
         </form>
