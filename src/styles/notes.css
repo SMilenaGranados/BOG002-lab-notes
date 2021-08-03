@@ -50,8 +50,9 @@
 }
 
 #logoPencil {
-  margin-left: 15px;
+  margin-right: 8px;
   width: 26px;
+  float: right;
 }
 
 #buttonLogOut {
@@ -68,3 +69,18 @@
   border: none;
   cursor: pointer;
 }
+
+textarea {
+  width: 250px;
+  margin-top: 32px;
+  border-radius: 8px;
+  font-family: "Atma", cursive;
+  font-size: 18px;
+  border: 1px solid white;
+  padding-left: 15px; 
+}
+
+#title, #date {
+  width: 250px;
+}
+
