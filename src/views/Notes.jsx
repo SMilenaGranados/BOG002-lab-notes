@@ -1,4 +1,3 @@
-import React from "react";
 import { auth, fires } from "../configuration/Firebase";
 import "../styles/notes.css";
 import { useForm } from "../hooks/useForm";
@@ -6,6 +5,8 @@ import { useHistory } from "react-router-dom";
 import logoAllNotes from "../assets/LogoAllNotes.png";
 import pencil from "../assets/Pencil.png";
 import line from "../assets/Line.png";
+import Modal from "../components/Modal";
+import useModal from "../hooks/useModal";
 
 const Notes = () => {
   const [formValues, handleInputChange] = useForm({
@@ -15,6 +16,7 @@ const Notes = () => {
   });
 
   const { title, date, message } = formValues;
+  const [isOpenModal, openModal, closeModal] = useModal();
   const history = useHistory();
 
   const addNote = (e) => {
@@ -40,7 +42,7 @@ const Notes = () => {
         </div>
         <p id="HiUser">Hi! ... </p>
 
-        <button id="buttonAddNote" type="button">
+        <button id="buttonAddNote" onClick={openModal} type="button">
           Add your new note
           <img id="logoPencil" src={pencil} alt="logoPencil" />
         </button>
@@ -57,8 +59,13 @@ const Notes = () => {
       <div>
         <img id="line" src={line} alt="line"></img>
       </div>
+      
+        
 
-      <div id="containerNote">
+        <Modal 
+        isOpen={isOpenModal} 
+        closeModal={closeModal}
+        title="New Note">
         <form onSubmit={addNote}>
           <div className="form-note">
             <input
@@ -98,7 +105,11 @@ const Notes = () => {
             Save
           </button>
         </form>
-      </div>
+        </Modal>
+      
+      
+
+      
     </section>
   );
 };

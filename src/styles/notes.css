@@ -78,6 +78,7 @@ textarea {
   font-size: 18px;
   border: 1px solid white;
   padding-left: 15px; 
+  overflow-y: auto;
 }
 
 #title, #date {
