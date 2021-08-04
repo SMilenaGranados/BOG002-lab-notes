@@ -72,16 +72,56 @@
 
 textarea {
   width: 250px;
+  height: 125px;
   margin-top: 32px;
   border-radius: 8px;
-  font-family: "Atma", cursive;
+  font-family: "Noto Sans", sans-serif;
   font-size: 18px;
-  border: 1px solid white;
-  padding-left: 15px; 
+  padding-left: 15px;
   overflow-y: auto;
 }
 
-#title, #date {
+#title,
+#date {
   width: 250px;
+  height: 30px;
 }
 
+#date,
+#message {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 14px;
+  border-color: black;
+}
+
+#title {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 14px;
+}
+
+#date,
+#message,
+#title {
+  width: 277px;
+  border: 2px solid #f4c356;
+  margin-top: 20px;
+}
+
+#buttonPost {
+  background-color: white;
+  text-align: center;
+
+  box-shadow: none;
+  border:none;
+  cursor: pointer;
+  margin-top: 5px;
+  width: 35px;
+  height: 35px;
+  padding: 0px;       
+}
+
+#imgBtnPost {
+  width: 35px;
+  height: 35px;
+  float: center;
+}

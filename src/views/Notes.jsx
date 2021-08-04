@@ -4,6 +4,7 @@ import { useForm } from "../hooks/useForm";
 import { useHistory } from "react-router-dom";
 import logoAllNotes from "../assets/LogoAllNotes.png";
 import pencil from "../assets/Pencil.png";
+import savePost from "../assets/Save.png";
 import line from "../assets/Line.png";
 import Modal from "../components/Modal";
 import useModal from "../hooks/useModal";
@@ -59,13 +60,8 @@ const Notes = () => {
       <div>
         <img id="line" src={line} alt="line"></img>
       </div>
-      
-        
 
-        <Modal 
-        isOpen={isOpenModal} 
-        closeModal={closeModal}
-        title="New Note">
+      <Modal isOpen={isOpenModal} closeModal={closeModal} title="New Note">
         <form onSubmit={addNote}>
           <div className="form-note">
             <input
@@ -101,15 +97,11 @@ const Notes = () => {
               required
             ></textarea>
           </div>
-          <button id="buttonSave" type="submit" className="button">
-            Save
+          <button id="buttonPost" type="submit" className="button">
+            <img id="imgBtnPost" src={savePost} alt="savePost" />
           </button>
         </form>
-        </Modal>
-      
-      
-
-      
+      </Modal>
     </section>
   );
 };
