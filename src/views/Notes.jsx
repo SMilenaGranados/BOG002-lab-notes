@@ -67,7 +67,6 @@ const Notes = () => {
             <input
               id="title"
               type="text"
-              name="title"
               placeholder="Title"
               value={title}
               onChange={handleInputChange}
@@ -75,10 +74,10 @@ const Notes = () => {
             ></input>
           </div>
           <div className="form-note">
+            <p id="DateToRemember">Date to remember</p>
             <input
               id="date"
               type="date"
-              name="date"
               placeholder="Date to remember"
               value={date}
               onChange={handleInputChange}
@@ -89,7 +88,6 @@ const Notes = () => {
             <textarea
               id="message"
               type="text"
-              name="message"
               placeholder="Note"
               rows="5"
               value={message}

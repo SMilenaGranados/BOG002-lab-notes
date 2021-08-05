@@ -70,13 +70,22 @@
   cursor: pointer;
 }
 
+#DateToRemember {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 12px;
+  text-align: left;
+  color: #838181;
+  margin-top: 8px;
+  margin-left: 30px;
+  margin-bottom: 1px;
+}
+
 textarea {
   width: 250px;
   height: 125px;
   margin-top: 32px;
   border-radius: 8px;
   font-family: "Noto Sans", sans-serif;
-  font-size: 18px;
   padding-left: 15px;
   overflow-y: auto;
 }
@@ -99,13 +108,18 @@ textarea {
   font-size: 14px;
 }
 
-#date,
 #message,
 #title {
   width: 277px;
   border: 2px solid #f4c356;
   margin-top: 20px;
 }
+
+#date {
+  width: 277px;
+  border: 2px solid #f4c356;
+  margin-top: 1px;
+  }
 
 #buttonPost {
   background-color: white;
