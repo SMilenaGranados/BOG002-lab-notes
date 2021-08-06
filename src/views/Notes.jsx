@@ -1,4 +1,5 @@
 import { auth, fires } from "../configuration/Firebase";
+import firebase from "firebase/app";
 import "../styles/notes.css";
 import { useForm } from "../hooks/useForm";
 import { useHistory } from "react-router-dom";
@@ -6,11 +7,16 @@ import logoAllNotes from "../assets/LogoAllNotes.png";
 import pencil from "../assets/Pencil.png";
 import savePost from "../assets/Save.png";
 import line from "../assets/Line.png";
+import btnEdit from "../assets/Edit.png";
+import btnDelete from "../assets/Delete.png";
 import Modal from "../components/Modal";
 import useModal from "../hooks/useModal";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../context/UserContext";
 
 const Notes = () => {
-  const [formValues, handleInputChange] = useForm({
+  const { user, setUser } = useContext(UserContext);
+  const [formValues, handleInputChange, reset] = useForm({
     title: "",
     date: "",
     message: "",
@@ -19,21 +25,51 @@ const Notes = () => {
   const { title, date, message } = formValues;
   const [isOpenModal, openModal, closeModal] = useModal();
   const history = useHistory();
+  const [notes, setNotes] = useState([]);
 
-  const addNote = (e) => {
+  const userId = firebase.auth().currentUser;
+
+  const addNote = async (e) => {
     e.preventDefault();
-    const storeCollection = fires.collection(title, date, message);
-    return storeCollection.add({
+
+    await fires.collection("notes").doc().set({
+      uid: user,
       Title: title,
       Date: date,
       Contents: message,
     });
+    console.log("envie nota");
+    reset(formValues);
   };
 
   const LogOut = (e) => {
     e.preventDefault();
     auth.signOut().then(() => history.push("/"));
   };
+
+  const getNotes = async (usuario) => {
+    console.log("userr ", usuario);
+    fires
+      .collection("notes")
+      .where("uid", "==", usuario)
+      .onSnapshot((querySnapshop) => {
+        const notesArray = [];
+        querySnapshop.forEach((doc) => {
+          notesArray.push({ ...doc.data(), id: doc.id });
+        });
+        setNotes(notesArray);
+      });
+  };
+  console.log(notes);
+
+  useEffect(() => {
+    console.log("holaaaaa");
+    if (userId) {
+      setUser(userId.uid);
+      getNotes(userId.uid);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userId]);
 
   return (
     <section id="sectionNotes">
@@ -57,10 +93,48 @@ const Notes = () => {
           Log Out
         </button>
       </header>
-      <div>
-        <img id="line" src={line} alt="line"></img>
-      </div>
 
+      <article>
+        <div>
+          <img id="line" src={line} alt="line"></img>
+        </div>
+        
+
+        <div id="listNotes">
+          {notes.map((note) => {
+            return (
+              <div id="publishedNote">
+                <div key={note.id}>
+                  <h2 id="noteTitle">{note.Title}</h2>
+                  <div id="containerNoteDate">
+                  <p id="noteDate">{note.Date}</p>
+                  </div>
+                  <textarea id="textNoteMessage" disabled="true">
+                    {note.Contents}
+                  </textarea>
+
+                  <>
+                    <button id="btnEditNote">
+                      {<img id="imgEdit" src={btnEdit} alt="btnEdit"></img>}
+                    </button>
+                    <button id="btnDeleteNote">
+                      {
+                        <img
+                          id="imgDelete"
+                          src={btnDelete}
+                          alt="btnDelete"
+                        ></img>
+                      }
+                    </button>
+                  </>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </article>
+
+      {/* Modal form add new note */}
       <Modal isOpen={isOpenModal} closeModal={closeModal} title="New Note">
         <form onSubmit={addNote}>
           <div className="form-note">
@@ -68,6 +142,7 @@ const Notes = () => {
               id="title"
               type="text"
               placeholder="Title"
+              name="title"
               value={title}
               onChange={handleInputChange}
               required
@@ -79,6 +154,7 @@ const Notes = () => {
               id="date"
               type="date"
               placeholder="Date to remember"
+              name="date"
               value={date}
               onChange={handleInputChange}
               required
@@ -89,6 +165,7 @@ const Notes = () => {
               id="message"
               type="text"
               placeholder="Note"
+              name="message"
               rows="5"
               value={message}
               onChange={handleInputChange}

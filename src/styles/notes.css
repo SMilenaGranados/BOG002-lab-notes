@@ -23,7 +23,7 @@
 
 #line {
   position: fixed;
-  top: 180px;
+  top: 160px;
   left: 0px;
   width: 100%;
 }
@@ -119,23 +119,99 @@ textarea {
   width: 277px;
   border: 2px solid #f4c356;
   margin-top: 1px;
-  }
+}
 
 #buttonPost {
   background-color: white;
   text-align: center;
 
   box-shadow: none;
-  border:none;
+  border: none;
   cursor: pointer;
   margin-top: 5px;
   width: 35px;
   height: 35px;
-  padding: 0px;       
+  padding: 0px;
 }
 
 #imgBtnPost {
   width: 35px;
   height: 35px;
   float: center;
+}
+
+#listNotes {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  }
+
+#publishedNote {
+  width: 287px;
+  min-height: 200px;
+  margin-top: 60px;
+  margin-left: 50px;
+  margin-right: 50px;
+  background-color: #fcd374;
+  overflow-y: auto;
+  border-bottom-right-radius: 25px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.6);
+}
+
+#btnEditNote,
+#btnDeleteNote {
+  width: 30px;
+  height: 32px;
+  margin: 10px;
+  padding: 0px;
+  background-color: #fcd374;
+  box-shadow: none;
+  cursor: pointer;
+  margin-bottom: 17px;
+}
+
+#imgEdit,
+#imgDelete {
+  width: 30px;
+  height: 32px;
+  float: center;
+  margin: 0px;
+}
+
+#noteTitle {
+  font-family: "Atma", cursive;
+  text-align: left;
+  margin-left: 20px;
+  margin-bottom: 3px;
+}
+
+#containerNoteDate {
+  background-color: white;
+  width: 110px;
+  height: 30px;
+  float: right;
+  margin-top: 3px;
+  margin-right: 20px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+#noteDate {
+  font-family: "Cabin", sans-serif;
+  font-size: 16px;
+  text-align: right;
+  margin-right: 8px;
+  margin-top: 6px
+}
+
+#textNoteMessage {
+  font-family: "Cabin", sans-serif;
+  font-size: 16px;
+  background-color: white;
+  text-align: justify;
+  width: 220px;
+  height: 130px;
+  padding-right: 15px;
+  padding-top: 10px;
+  margin-top: 20px;
+  border: white;
 }
