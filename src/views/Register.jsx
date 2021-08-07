@@ -5,7 +5,6 @@ import logoAllNotes from "../assets/LogoAllNotes.png";
 import { useForm } from "../hooks/useForm";
 import { Link, useHistory } from "react-router-dom";
 
-
 const Register = () => {
   const [formValues, handleInputChange] = useForm({
     name: "",
@@ -21,31 +20,31 @@ const Register = () => {
 
   const registerUser = (e) => {
     e.preventDefault();
-    auth.createUserWithEmailAndPassword(email, password)
-    .then(() => history.push('/'))
-    .catch((err) => {
-      console.log(err);
-      if (err.code === "auth/invalid-email") {
-        setErrorInvalidEmail("Please enter email with format user@abc.com");
-        setTimeout(() => {
-          setErrorInvalidEmail("");
-        }, 3000);
-      }
-      if (err.code === "auth/email-already-in-use") {
-        setErrorInUseEmail("email entered is registered");
-        setTimeout(() => {
-          setErrorInUseEmail("");
-        }, 3000);
-      }
-      if (password.length < 6)   {
-        setErrorTypePassword("Please enter minimum 6 characters");
-        setTimeout(() => {
-          setErrorTypePassword("");
-        }, 3000);
-      }
-    });
-};
-
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then(() => history.push("/"))
+      .catch((err) => {
+        console.log(err);
+        if (err.code === "auth/invalid-email") {
+          setErrorInvalidEmail("Please enter email with format user@abc.com");
+          setTimeout(() => {
+            setErrorInvalidEmail("");
+          }, 3000);
+        }
+        if (err.code === "auth/email-already-in-use") {
+          setErrorInUseEmail("email entered is registered");
+          setTimeout(() => {
+            setErrorInUseEmail("");
+          }, 3000);
+        }
+        if (password.length < 6) {
+          setErrorTypePassword("Please enter minimum 6 characters");
+          setTimeout(() => {
+            setErrorTypePassword("");
+          }, 3000);
+        }
+      });
+  };
 
   return (
     <section>
@@ -59,15 +58,16 @@ const Register = () => {
       <div id="containerRegister">
         <form onSubmit={registerUser}>
           <div className="form-group">
-          <input id="inputName"
-            type="text"
-            name="name"
-            placeholder="user name"
-            value={name}
-            onChange={handleInputChange}
-            required
-          ></input>
-        </div>
+            <input
+              id="inputName"
+              type="text"
+              name="name"
+              placeholder="user name"
+              value={name}
+              onChange={handleInputChange}
+              required
+            ></input>
+          </div>
 
           <div className="form-group">
             <input

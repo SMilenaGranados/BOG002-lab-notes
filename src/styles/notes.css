@@ -72,7 +72,7 @@
 
 #DateToRemember {
   font-family: "Noto Sans", sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   text-align: left;
   color: #838181;
   margin-top: 8px;
@@ -85,7 +85,7 @@ textarea {
   height: 125px;
   margin-top: 32px;
   border-radius: 8px;
-  font-family: "Noto Sans", sans-serif;
+  font-family: "Cabin", sans-serif;
   padding-left: 15px;
   overflow-y: auto;
 }
@@ -98,14 +98,14 @@ textarea {
 
 #date,
 #message {
-  font-family: "Noto Sans", sans-serif;
-  font-size: 14px;
+  font-family: "Cabin", sans-serif;
+  font-size: 16px;
   border-color: black;
 }
 
 #title {
-  font-family: "Noto Sans", sans-serif;
-  font-size: 14px;
+  font-family: "Cabin", sans-serif;
+  font-size: 16px;
 }
 
 #message,
@@ -207,7 +207,7 @@ textarea {
   font-family: "Cabin", sans-serif;
   font-size: 16px;
   background-color: white;
-  text-align: justify;
+  text-align: left;
   width: 220px;
   height: 130px;
   padding-right: 15px;

@@ -3,6 +3,8 @@ import firebase from "firebase/app";
 import "../styles/notes.css";
 import { useForm } from "../hooks/useForm";
 import { useHistory } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../context/UserContext";
 import logoAllNotes from "../assets/LogoAllNotes.png";
 import pencil from "../assets/Pencil.png";
 import savePost from "../assets/Save.png";
@@ -11,8 +13,7 @@ import btnEdit from "../assets/Edit.png";
 import btnDelete from "../assets/Delete.png";
 import Modal from "../components/Modal";
 import useModal from "../hooks/useModal";
-import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../context/UserContext";
+
 
 const Notes = () => {
   const { user, setUser } = useContext(UserContext);
@@ -40,6 +41,7 @@ const Notes = () => {
     });
     console.log("envie nota");
     reset(formValues);
+    
   };
 
   const LogOut = (e) => {
@@ -47,6 +49,11 @@ const Notes = () => {
     auth.signOut().then(() => history.push("/"));
   };
 
+  const deleteNote = (id) => {
+     fires.collection("notes").doc(id).delete();
+      console.log("Ha sido eliminado");
+    }
+  
   const getNotes = async (usuario) => {
     console.log("userr ", usuario);
     fires
@@ -60,10 +67,8 @@ const Notes = () => {
         setNotes(notesArray);
       });
   };
-  console.log(notes);
 
   useEffect(() => {
-    console.log("holaaaaa");
     if (userId) {
       setUser(userId.uid);
       getNotes(userId.uid);
@@ -98,8 +103,8 @@ const Notes = () => {
         <div>
           <img id="line" src={line} alt="line"></img>
         </div>
-        
 
+        {/* Published Notes */}
         <div id="listNotes">
           {notes.map((note) => {
             return (
@@ -107,7 +112,7 @@ const Notes = () => {
                 <div key={note.id}>
                   <h2 id="noteTitle">{note.Title}</h2>
                   <div id="containerNoteDate">
-                  <p id="noteDate">{note.Date}</p>
+                    <p id="noteDate">{note.Date}</p>
                   </div>
                   <textarea id="textNoteMessage" disabled="true">
                     {note.Contents}
@@ -115,16 +120,13 @@ const Notes = () => {
 
                   <>
                     <button id="btnEditNote">
-                      {<img id="imgEdit" src={btnEdit} alt="btnEdit"></img>}
+                      <img id="imgEdit" src={btnEdit} alt="btnEdit"></img>
                     </button>
-                    <button id="btnDeleteNote">
-                      {
-                        <img
-                          id="imgDelete"
-                          src={btnDelete}
-                          alt="btnDelete"
-                        ></img>
-                      }
+                    <button
+                      id="btnDeleteNote"
+                      onClick={() => deleteNote(note.id)}
+                    >
+                      <img id="imgDelete" src={btnDelete} alt="btnDelete"></img>
                     </button>
                   </>
                 </div>
@@ -133,6 +135,8 @@ const Notes = () => {
           })}
         </div>
       </article>
+
+
 
       {/* Modal form add new note */}
       <Modal isOpen={isOpenModal} closeModal={closeModal} title="New Note">
@@ -179,6 +183,6 @@ const Notes = () => {
       </Modal>
     </section>
   );
-};
+        }
 
 export default Notes;
