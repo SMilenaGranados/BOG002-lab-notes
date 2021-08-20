@@ -26,7 +26,7 @@ const Login = () => {
       .catch((err) => {
         console.log(err);
         if (err.code === "auth/user-not-found") {
-          setErrorEmail("Please register or enter a valid email address");
+          setErrorEmail("Please enter a valid email address");
           setTimeout(() => {
             setErrorEmail("");
           }, 3000);
